@@ -3,10 +3,11 @@ const app = express();
 const PORT = process.env.PORT;
 const movieRouter = require("./routes/movieRouter");
 
-//* app.use per asset statici, router, error handlers
+//* app.use per asset statici, router
 //router
 app.use("/api/movies", movieRouter);
-// error handler
+//assets
+app.use(express.static("public"));
 
 app.listen(PORT, () => {
   console.log(`Server is listening http://127.0.0.1:${PORT}`);

@@ -45,6 +45,7 @@ function show(req, res) {
         message: "Movie not found",
       });
     const movie = result[0];
+    movie.image = `/images/${movie.image}`;
     //prepare query for reviews
     const reviewsSql = "SELECT * FROM reviews WHERE movie_id=?";
     // execute query

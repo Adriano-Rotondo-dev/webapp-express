@@ -7,5 +7,10 @@
 - [x] connect with db
 - [x] create first route
 - [x] create express routing
-- [x]create controller
-- create queries for db response
+- [x] create controller
+- [x] create queries for db response
+
+## Bonus
+
+- [x] add movie images in show query
+- [x] Store database credentials as environment variables
