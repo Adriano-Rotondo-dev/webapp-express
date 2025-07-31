@@ -1,5 +1,6 @@
 //import connection
 const connection = require("../database/connection");
+const PORT = process.env.PORT;
 /**
  * get all movies
  * sql query to show all movies from db
@@ -45,7 +46,7 @@ function show(req, res) {
         message: "Movie not found",
       });
     const movie = result[0];
-    movie.image = `/images/${movie.image}`;
+    movie.image = `http://localhost:${PORT}/images/${movie.image}`;
     //prepare query for reviews
     const reviewsSql = "SELECT * FROM reviews WHERE movie_id=?";
     // execute query
