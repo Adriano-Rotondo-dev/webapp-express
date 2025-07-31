@@ -5,6 +5,7 @@
 - [x] install dotenv
 - [x] create express app
 - [x] connect with db
-- create first route
-- crete express routing
-- create controller
+- [x] create first route
+- [x] create express routing
+- [x]create controller
+- create queries for db response
