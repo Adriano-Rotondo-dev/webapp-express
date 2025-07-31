@@ -1,5 +1,11 @@
 //import connection
 const connection = require("../database/connection");
+/**
+ * get all movies
+ * sql query to show all movies from db
+ * @param {*} req
+ * @param {*} res
+ */
 //define index function
 function index(req, res) {
   //prepare query
@@ -21,12 +27,40 @@ function index(req, res) {
 
 //define show function
 function show(req, res) {
-  res.send(`show movie ${req.params.id}`);
+  console.log(req.params);
+  //destructuring
+  const { id } = req.params;
+  //prepare query
+  const sql = "SELECT * FROM movies WHERE id =?";
+  //execute query
+  connection.execute(sql, [id], (err, result) => {
+    if (err)
+      return res.status(500).json({
+        error: true,
+        message: err.message,
+      });
+    if (result.length === 0)
+      return res.status(404).json({
+        error: true,
+        message: "Movie not found",
+      });
+    const movie = result[0];
+    //prepare query for reviews
+    const reviewsSql = "SELECT * FROM reviews WHERE movie_id=?";
+    // execute query
+    connection.execute(reviewsSql, [id], (err, result) => {
+      if (err)
+        return res.status(500).json({
+          error: true,
+          message: err.message,
+        });
+      const movieReviews = result;
+      movie.reviews = movieReviews;
+      console.log(movie);
+      return res.json(movie);
+    });
+  });
 }
-
-//prepare query
-
-//execute query
 
 //handle error500
 //handle error404
