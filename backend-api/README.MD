@@ -3,8 +3,8 @@
 - [x] install express
 - [x] install mysql2
 - [x] install dotenv
-- create express app
-- connect with db
+- [x] create express app
+- [x] connect with db
 - create first route
 - crete express routing
 - create controller
