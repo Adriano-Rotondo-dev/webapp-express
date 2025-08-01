@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT;
 const movieRouter = require("./routes/movieRouter");
+//setto la variabile per la cors policy
+const cors = require("cors");
+//apro la cors policy
+app.use(cors());
 
 //* app.use per asset statici, router
 //router
