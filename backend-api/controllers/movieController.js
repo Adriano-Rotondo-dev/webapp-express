@@ -21,8 +21,14 @@ function index(req, res) {
         message: err.message,
       });
     console.log(result);
+    //add images to each movie
     //return json response to the user
-    res.json(result);
+    res.json(
+      result.map((movie) => {
+        movie.image = `http://localhost:${PORT}/images/${movie.image}`;
+        return movie;
+      })
+    );
   });
 }
 
