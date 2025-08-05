@@ -84,18 +84,17 @@ function storeReview(req, res) {
   // Destructure
   const { id } = req.params;
   const { name, vote, text } = req.body;
+  console.log(id, name, vote, text);
 
   const sql =
     "INSERT INTO reviews (movie_id, name, vote, text) VALUES (?, ?, ?, ?)";
 
   connection.execute(sql, [id, name, vote, text], (err, result) => {
-    if (err) {
+    if (err)
       return res.status(500).json({
         error: true,
         message: err.message,
       });
-    }
-
     res.status(201).json({
       error: false,
       message: "Review added successfully",
