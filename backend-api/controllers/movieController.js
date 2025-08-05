@@ -79,7 +79,39 @@ function show(req, res) {
 
 //get reviews related to single movie
 
+// Add storeReview
+function storeReview(req, res) {
+  // Destructure
+  const { id } = req.params;
+  const { name, vote, text } = req.body;
+
+  const sql =
+    "INSERT INTO reviews (movie_id, name, vote, text) VALUES (?, ?, ?, ?)";
+
+  connection.execute(sql, [id, name, vote, text], (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        error: true,
+        message: err.message,
+      });
+    }
+
+    res.status(201).json({
+      error: false,
+      message: "Review added successfully",
+      review: {
+        id: result.insertId,
+        movie_id: id,
+        name,
+        vote,
+        text,
+      },
+    });
+  });
+}
+
 module.exports = {
   index,
   show,
+  storeReview,
 };

@@ -5,6 +5,8 @@ const movieRouter = require("./routes/movieRouter");
 const notFound = require("./middleware/notFound");
 const serverError = require("./middleware/serverError");
 
+//bodyparser
+app.use(express.json());
 //setto la variabile per la cors policy
 const cors = require("cors");
 //apro la cors policy

@@ -14,5 +14,8 @@ router.get("/", movieController.index);
 //controller.show
 router.get("/:id", movieController.show);
 
+//post route
+router.get("/:id/reviews", movieController.storeReview);
+
 //export router
 module.exports = router;
